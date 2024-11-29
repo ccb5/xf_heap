@@ -1,7 +1,6 @@
 #include "unity/unity.h"
 #include "unity/unity_fixture.h"
 
-
 TEST_GROUP_RUNNER(heap_group)
 {
     RUN_TEST_CASE(heap_group, heap_init);
@@ -11,5 +10,3 @@ TEST_GROUP_RUNNER(heap_group)
     RUN_TEST_CASE(heap_group, heap_free);
     RUN_TEST_CASE(heap_group, heap_uninit);
 }
-
-

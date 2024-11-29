@@ -1,12 +1,12 @@
 /**
  * @file test_heap_redirect.c
  * @author cangyu (sky.kirto@qq.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-06-25
- * 
+ *
  * @copyright Copyright (c) 2024, CorAL. All rights reserved.
- * 
+ *
  */
 
 #include "unity/unity.h"
@@ -17,7 +17,7 @@ TEST_GROUP(heap_redirect_group);
 
 static unsigned int  s_count = 0;
 
-static void* _malloc(unsigned int size)
+static void *_malloc(unsigned int size)
 {
     s_count++;
     return NULL;
@@ -42,7 +42,6 @@ TEST_TEAR_DOWN(heap_redirect_group)
 {
 }
 
-
 TEST(heap_redirect_group, heap_redirect_func)
 {
     xf_alloc_func_t func;
@@ -57,5 +56,3 @@ TEST(heap_redirect_group, heap_redirect_func)
     xf_free(NULL);
     TEST_ASSERT_EQUAL_INT(0, s_count);
 }
-
-

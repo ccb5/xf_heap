@@ -92,14 +92,14 @@ int xf_heap_uninit(void)
 
 void *xf_malloc(unsigned int size)
 {
-    void *res = (void*) 0;
+    void *res = (void *) 0;
     XF_HEAP_LOCK(s_heap.lock);
     {
         if (s_heap.init != XF_HEAP_MAGIC_NUM) {
-            return (void*) 0;
+            return (void *) 0;
         }
         res = s_heap.func.malloc(size);
-        if (res != (void*) 0) {
+        if (res != (void *) 0) {
             s_heap.free_bytes -= s_heap.func.get_block_size(res);
             if (s_heap.min_ever_free_bytes_remaining > s_heap.free_bytes) {
                 s_heap.min_ever_free_bytes_remaining = s_heap.free_bytes;
@@ -117,7 +117,7 @@ void xf_free(void *pv)
         if (s_heap.init != XF_HEAP_MAGIC_NUM) {
             return;
         }
-        if (pv != (void*) 0) {
+        if (pv != (void *) 0) {
             s_heap.free_bytes += s_heap.func.get_block_size(pv);
         }
         s_heap.func.free(pv);

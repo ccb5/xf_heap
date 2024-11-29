@@ -29,7 +29,7 @@ int main(void)
     printf("free_size = %ld\n", free_size);
 
     /* 申请内存 */
-    int *p = (int*)xf_malloc(sizeof(int));
+    int *p = (int *)xf_malloc(sizeof(int));
     if (p == NULL) {
         printf("xf_malloc error\n");
         return -1;
@@ -53,7 +53,6 @@ int main(void)
     /* 查询内存 */
     free_size = xf_heap_get_free_size();
     printf("free_size = %ld\n", free_size);
-
 
     return 0;
 }

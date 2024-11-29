@@ -1,7 +1,8 @@
 /**
  * @file xf_alloc.h
  * @author cangyu (sky.kirto@qq.com)
- * @brief 对xf_heap.c提供最基础的内存管理部分API
+ * @brief 基于 heap5 的内存分配实现。
+ * @note 对 xf_heap.c 提供最基础的内存管理部分 API.
  * @version 0.1
  * @date 2023-11-15
  *
@@ -18,6 +19,11 @@
 
 #include "xf_heap.h"
 
+/**
+ * @ingroup group_xf_heap_internal
+ * @{
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -29,32 +35,32 @@ extern "C" {
 /* ==================== [Global Prototypes] ================================= */
 
 /**
- * @brief 带内存管理的内存申请函数
+ * @brief 带内存管理的内存申请函数。
  *
- * @param size 申请内存的大小
+ * @param size 申请内存的大小。
  * @return void* 申请内存地址
  */
 void *xf_heap_malloc(unsigned int size);
 
 /**
- * @brief 带内存管理的内存释放函数
+ * @brief 带内存管理的内存释放函数。
  *
- * @param pv 需要释放的指针地址
+ * @param pv 需要释放的指针地址。
  */
 void xf_heap_free(void *pv);
 
 /**
- * @brief 内存注册，需要在使用xf_heap_malloc之前注册
+ * @brief 内存注册，需要在使用 xf_heap_malloc 之前注册。
  *
- * @param heap_regions 注册内存的数据信息
+ * @param heap_regions 注册内存的数据信息。
  * @return unsigned int 总共可用内存大小
  */
 unsigned int xf_heap_region(const xf_heap_region_t *const heap_regions);
 
 /**
- * @brief 获取内存块的实际大小
+ * @brief 获取内存块的实际大小。
  *
- * @param pv 内存块指针
+ * @param pv 内存块指针。
  * @return unsigned int 内存块实际占用内存大小
  */
 unsigned int xf_heap_get_block_size(void *pv);
@@ -64,5 +70,10 @@ unsigned int xf_heap_get_block_size(void *pv);
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
+
+/**
+ * End of group_xf_heap_internal
+ * @}
+ */
 
 #endif // __XF_ALLOC_H__
