@@ -18,35 +18,34 @@
 #define __XF_HEAP_H__
 
 /**
+ * @cond (XFAPI_USER || XFAPI_PORT || XFAPI_INTERNAL)
  * @defgroup group_xf_heap xf_heap
  * @brief xf_heap 堆内存接口。
  *
+ * 如 xf_malloc, xf_free 等。
  * 通常直接使用即可，需要时可通过 xf_heap_redirect() 函数重定向内存管理实现。
- *
- */
-
-/**
- * @ingroup group_xf_heap
- * @defgroup group_xf_heap_user 用户接口
- * @brief 如 xf_malloc, xf_free 等。
- *
  * xfusion 用户使用 xf_heap 时只需 `#include "xf_heap.h"` 即可。
  *
+ * @endcond
  */
 
 /**
+ * @cond XFAPI_PORT
  * @ingroup group_xf_heap
- * @defgroup group_xf_heap_port 移植接口
+ * @defgroup group_xf_heap_port porting
  * @brief 注册堆内存管理实现操作集，以及注册内存区域。
  *
  * 对接 xf_heap 时只需 `#include "xf_heap_port.h"` 即可。
  *
+ * @endcond
  */
 
 /**
+ * @cond XFAPI_INTERNAL
  * @ingroup group_xf_heap
- * @defgroup group_xf_heap_internal 内部接口
+ * @defgroup group_xf_heap_internal internal
  * @brief 内部的内存管理实现的相关 api。用户最好不要直接使用。
+ * @endcond
  */
 
 /* ==================== [Includes] ========================================== */
@@ -62,7 +61,9 @@ extern "C" {
 /* ==================== [Typedefs] =========================================== */
 
 /**
- * @ingroup group_xf_heap_port
+ * @cond XFAPI_PORT
+ * @addtogroup group_xf_heap_port
+ * @endcond
  * @{
  */
 
@@ -85,14 +86,16 @@ typedef struct _xf_alloc_func_t {
 } xf_alloc_func_t;
 
 /**
- * End of group_xf_heap_port
+ * End of addtogroup group_xf_heap_port
  * @}
  */
 
 /* ==================== [Global Prototypes] ================================= */
 
 /**
- * @ingroup group_xf_heap_user
+ * @cond XFAPI_USER
+ * @addtogroup group_xf_heap
+ * @endcond
  * @{
  */
 
@@ -116,12 +119,14 @@ void *xf_malloc(unsigned int size);
 void xf_free(void *pv);
 
 /**
- * End of group_xf_heap_port
+ * End of addtogroup group_xf_heap
  * @}
  */
 
 /**
- * @ingroup group_xf_heap_port
+ * @cond XFAPI_PORT
+ * @addtogroup group_xf_heap_port
+ * @endcond
  * @{
  */
 
@@ -161,12 +166,14 @@ int xf_heap_init(const xf_heap_region_t *const regions);
 int xf_heap_uninit(void);
 
 /**
- * End of group_xf_heap_port
+ * End of addtogroup group_xf_heap_port
  * @}
  */
 
 /**
- * @ingroup group_xf_heap_user
+ * @cond XFAPI_USER
+ * @addtogroup group_xf_heap
+ * @endcond
  * @{
  */
 
@@ -185,7 +192,7 @@ unsigned int xf_heap_get_free_size(void);
 unsigned int xf_heap_get_min_ever_free_size(void);
 
 /**
- * End of group_xf_heap_port
+ * End of addtogroup group_xf_heap
  * @}
  */
 
