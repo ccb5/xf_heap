@@ -64,10 +64,7 @@ TEST(heap_group, heap_free)
     TEST_ASSERT_EQUAL(s_size, _size);
 }
 
-
 TEST(heap_group, heap_uninit)
 {
     TEST_ASSERT_EQUAL(0, xf_heap_uninit());
 }
-
-

@@ -60,7 +60,7 @@ static block_link_t start, *end = (void *)0;
 void *xf_heap_malloc(unsigned int size)
 {
     block_link_t *block, *previous_block, *new_block_link;
-    void *ret = (void*) 0;
+    void *ret = (void *) 0;
 
     XF_HEAP_ASSERT(end);
 
@@ -88,7 +88,7 @@ void *xf_heap_malloc(unsigned int size)
             previous_block = &start;
             block = start.next_free_block;
 
-            while ((block->block_size < size) && (block->next_free_block != (void*) 0)) {
+            while ((block->block_size < size) && (block->next_free_block != (void *) 0)) {
                 previous_block = block;
                 block = block->next_free_block;
             }
@@ -108,7 +108,7 @@ void *xf_heap_malloc(unsigned int size)
                 }
 
                 block->block_size |= block_allocate_bit;
-                block->next_free_block = (void*) 0;
+                block->next_free_block = (void *) 0;
             }
         }
     }
@@ -121,16 +121,16 @@ void xf_heap_free(void *pv)
     unsigned char *puc = (unsigned char *) pv;
     block_link_t *link;
 
-    if (pv != (void*) 0) {
+    if (pv != (void *) 0) {
         puc -= heap_struct_size;
 
         link = (void *) puc;
 
         XF_HEAP_ASSERT((link->block_size & block_allocate_bit) != 0);
-        XF_HEAP_ASSERT(link->next_free_block == (void*) 0);
+        XF_HEAP_ASSERT(link->next_free_block == (void *) 0);
 
         if ((link->block_size & block_allocate_bit) != 0) {
-            if (link->next_free_block == (void*) 0) {
+            if (link->next_free_block == (void *) 0) {
                 link->block_size &= ~block_allocate_bit;
                 insert_block_into_free_list(((block_link_t *) link));
             }
@@ -140,14 +140,14 @@ void xf_heap_free(void *pv)
 
 unsigned int xf_heap_region(const xf_heap_region_t *const heap_regions)
 {
-    block_link_t *first_free_block_in_region = (void*) 0, *previous_free_block;
+    block_link_t *first_free_block_in_region = (void *) 0, *previous_free_block;
     xf_heap_intptr_t aligned_heap;
     unsigned int total_region_size, total_heap_size = 0;
     long defined_regions = 0;
     xf_heap_intptr_t address;
     const xf_heap_region_t *heap_region;
 
-    XF_HEAP_ASSERT(end == (void*) 0);
+    XF_HEAP_ASSERT(end == (void *) 0);
 
     heap_region = &(heap_regions[defined_regions]);
 
@@ -170,7 +170,7 @@ unsigned int xf_heap_region(const xf_heap_region_t *const heap_regions)
             start.next_free_block = (block_link_t *) aligned_heap;
             start.block_size = (unsigned int) 0;
         } else {
-            XF_HEAP_ASSERT(end != (void*) 0);
+            XF_HEAP_ASSERT(end != (void *) 0);
             XF_HEAP_ASSERT(address > (unsigned int) end);
         }
 
@@ -180,13 +180,13 @@ unsigned int xf_heap_region(const xf_heap_region_t *const heap_regions)
         address &= ~BYTE_ALIGNMENT_MASK;
         end = (block_link_t *) address;
         end->block_size = 0;
-        end->next_free_block = (void*) 0;
+        end->next_free_block = (void *) 0;
 
         first_free_block_in_region = (block_link_t *) aligned_heap;
         first_free_block_in_region->block_size = address - (xf_heap_intptr_t) first_free_block_in_region;
         first_free_block_in_region->next_free_block = end;
 
-        if (previous_free_block != (void*) 0) {
+        if (previous_free_block != (void *) 0) {
             previous_free_block->next_free_block = first_free_block_in_region;
         }
 
@@ -207,13 +207,13 @@ unsigned int xf_heap_get_block_size(void *pv)
     unsigned char *puc = (unsigned char *) pv;
     block_link_t *link;
 
-    if (pv != (void*) 0) {
+    if (pv != (void *) 0) {
         puc -= heap_struct_size;
 
         link = (void *) puc;
 
         if ((link->block_size & block_allocate_bit) != 0) {
-            if (link->next_free_block == (void*) 0) {
+            if (link->next_free_block == (void *) 0) {
                 block_size = link->block_size & (~block_allocate_bit);
                 return block_size;
             }
@@ -221,7 +221,6 @@ unsigned int xf_heap_get_block_size(void *pv)
     }
     return 0;
 }
-
 
 /* ==================== [Static Functions] ================================== */
 

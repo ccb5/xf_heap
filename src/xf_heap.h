@@ -74,15 +74,15 @@ xf_heap_err_t xf_heap_redirect(xf_alloc_func_t func);
  * @param regions 注册不同内存区域，数组最后一个必须是{}
  *
  * @note 该函数只能在xf_malloc之前调用
- * 
- * @return int 0 设置成功， -1 设置失败 
+ *
+ * @return int 0 设置成功， -1 设置失败
  */
 int xf_heap_init(const xf_heap_region_t *const regions);
 
 /**
  * @brief 内存反初始化
- * 
- * @return int 0 设置成功， -1 设置失败 
+ *
+ * @return int 0 设置成功， -1 设置失败
  */
 int xf_heap_uninit(void);
 

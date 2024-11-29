@@ -66,14 +66,14 @@ typedef XF_HEAP_ERR_TYPE xf_heap_err_t;
 
 /**
  * @brief heap的指针整数数类型
- * 
+ *
  */
 
 #ifndef XF_HEAP_INTPTR_TYPE
 #include <stdint.h>
 #define XF_HEAP_INTPTR_TYPE intptr_t
 #endif
- 
+
 typedef XF_HEAP_INTPTR_TYPE xf_heap_intptr_t;
 
 /* ==================== [Typedefs] ========================================== */
@@ -95,8 +95,6 @@ typedef XF_HEAP_INTPTR_TYPE xf_heap_intptr_t;
 #ifndef XF_HEAP_ASSERT
 #define XF_HEAP_ASSERT(x)
 #endif // XF_HEAP_ASSERT
-
-
 
 #ifdef __cplusplus
 } /* extern "C" */
